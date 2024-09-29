@@ -24,6 +24,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(17ch, 100%), 1fr));
   gap: 1rem;
+  cursor: pointer;
 }
 
 .pokemon-card,
