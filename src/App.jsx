@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
@@ -12,8 +12,7 @@ function App() {
           fetch(pokemon.url)
             .then((response) => response.json())
             .then((pokemonData) => {
-              console.log(pokemonData);
-              setPokemon((pokemon) => [...pokemon, pokemonData]);
+              setPokemon((array) => [...array, pokemonData]);
             });
         });
       });
@@ -21,27 +20,29 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Gotta Catch&apos;Em All</h1>
+      <h1>Gotta catch them all</h1>
       <div className="two-columns">
-        <div id="cardsContainer" className="grid">
-          {pokemon.map((pokemon) => (
+        <div className="grid">
+          {/* pokemon cards */}
+          {pokemon.map((pok, index) => (
             <div
-              key={pokemon.id}
+              key={pok.id + index.toString()}
               className="pokemon-card"
-              onClick={() => setSelectedPokemon(pokemon)}
+              onClick={() => setSelectedPokemon(pok)}
             >
               <img
+                src={pok.sprites.front_default}
+                alt={pok.name}
                 className="pokemon-card-image"
-                src={pokemon.sprites.front_default}
-                alt={pokemon.name}
               />
-              <h2 className="pokemon-card-title">{pokemon.name}</h2>
+              <h2 className="pokemon-card-title">{pok.name}</h2>
               <p className="pokemon-card-subtitle">
-                {pokemon.types.map((type) => type.type.name).join(", ")}
+                {pok.types.map((type) => type.type.name).join(", ")}
               </p>
             </div>
           ))}
         </div>
+        {/* selected Pokemon- bigger card */}
         {selectedPokemon && (
           <div className="info">
             <img
