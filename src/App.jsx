@@ -22,6 +22,8 @@ function App() {
   return (
     <div className="container">
       <h1>Gotta Catch&apos;Em All</h1>
+
+      {/* Pokémon cards */}
       <div className="two-columns">
         <div id="cardsContainer" className="grid">
           {pokemon.map((pokemon) => (
@@ -42,6 +44,8 @@ function App() {
             </div>
           ))}
         </div>
+
+        {/* Selected Pokemons - bigger card */}
         {selectedPokemon && (
           <div className="info">
             <img
